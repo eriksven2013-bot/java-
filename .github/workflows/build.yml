@@ -5,13 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Show repo files
-        run: find . -not -path './.git/*' | head -60
-      - name: Find project folder
-        run: |
-          F=$(find . -name build.gradle -not -path './.git/*' | head -1)
-          if [ -z "$F" ]; then echo "NO build.gradle FOUND IN REPO"; exit 1; fi
-          echo "PROJECT_DIR=$(dirname "$F")" >> "$GITHUB_ENV"
+      - run: unzip -q story-engine.zip
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -20,8 +14,8 @@ jobs:
         with:
           gradle-version: 9.2.1
       - run: gradle build
-        working-directory: ${{ env.PROJECT_DIR }}
+        working-directory: story-engine
       - uses: actions/upload-artifact@v4
         with:
           name: storyengine-jar
-          path: ${{ env.PROJECT_DIR }}/build/libs/*.jar
+          path: story-engine/build/libs/*.jar
