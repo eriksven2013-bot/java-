@@ -13,7 +13,8 @@ jobs:
         with:
           gradle-version: 9.2.1
       - run: gradle build
+        working-directory: story-engine
       - uses: actions/upload-artifact@v4
         with:
           name: storyengine-jar
-          path: build/libs/*.jar
+          path: story-engine/build/libs/*.jar
