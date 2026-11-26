@@ -1,0 +1,10 @@
+// Tells Gradle where to download the Fabric Loom plugin from.
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.fabricmc.net/' }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'story-engine'
