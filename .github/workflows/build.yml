@@ -5,7 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: unzip -q story-engine.zip
+      - name: Show repo files
+        run: ls -la
+      - name: Unzip project
+        run: |
+          Z=$(ls *.zip 2>/dev/null | head -1)
+          if [ -z "$Z" ]; then echo "NO ZIP FILE FOUND IN REPO TOP LEVEL"; exit 1; fi
+          echo "Using: $Z"
+          unzip -q "$Z"
+          test -d story-engine || { echo "NO story-engine FOLDER INSIDE ZIP"; ls; exit 1; }
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
