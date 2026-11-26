@@ -1,7 +1,7 @@
 plugins {
     // Minecraft 1.21.11 is the last "obfuscated" version, so it uses the "-remap" Loom plugin.
     // If Gradle says it can't find this plugin id, try 'fabric-loom' instead (the older name).
-    id 'net.fabricmc.fabric-loom-remap' version "${project.loom_version}"
+    id 'net.fabricmc.fabric-loom-remap' version '1.14-SNAPSHOT'
     id 'maven-publish'
 }
 
